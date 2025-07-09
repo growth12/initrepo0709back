@@ -21,11 +21,12 @@ pipeline {
         }
 
         stage('Deploy') {
-            steps {
-                sh "docker rm -f $CONTAINER_NAME || true"
-                sh "docker run -d -p ${PORT}:80 --name $CONTAINER_NAME $IMAGE_NAME"
-            }
-        }
+    steps {
+        sh 'docker rm -f react-app-container || true' // 컨테이너가 없어도 에러 발생하지 않도록 || true 추가
+        // 호스트의 80번 포트를 컨테이너의 8000번 포트에 연결
+        sh 'docker run -d -p 80:8000 --name react-app-container react-app'
+    }
+}
 
         stage('Check Running Container') {
             steps {
