@@ -14,7 +14,7 @@ app = FastAPI(
 # CORS 미들웨어 설정
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # 프로덕션에서는 특정 도메인만 허용하세요
+    allow_origins=["http://56.155.27.230:3000"],  # 프론트가 띄워진 주소 (또는 ["*"] 테스트용)
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
